@@ -11,6 +11,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"path/filepath"
 	"strings"
 	"time"
 
@@ -229,7 +230,7 @@ func readConfig() {
 	var trackers []Tracker
 
 	home, _ := os.UserHomeDir()
-	confFile := fmt.Sprintf("%s/%s", home, ConfigFile)
+	confFile := filepath.Clean(fmt.Sprintf("%s/%s", home, ConfigFile))
 
 	cfg, err := os.Open(confFile)
 	if err != nil {
